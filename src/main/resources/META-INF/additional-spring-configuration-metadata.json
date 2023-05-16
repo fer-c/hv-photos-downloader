@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "app.defaultBaseUrl",
+    "type": "java.lang.String",
+    "description": "Default service base URL for the REST API"
+  },
+  {
+    "name": "app.defaultPageSize",
+    "type": "java.lang.Integer",
+    "description": "Default REST API client page size"
+  },
+  {
+    "name": "app.defaultMaxPages",
+    "type": "java.lang.Integer",
+    "description": "Default REST API client max pages to download"
+  },
+  {
+    "name": "app.defaultTargetPath",
+    "type": "java.lang.String",
+    "description": "Default destination for the download files"
+  }
+]}
