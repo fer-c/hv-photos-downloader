@@ -22,3 +22,12 @@ The debug information is located on the execution dir with the name `photos-down
 The output file name has escaped address (removing non-alphanumeric characters):  
 `[id]-[address].[ext]`
 
+
+## Building with Docker
+
+Provided docker configuration to build and run without java
+
+```
+$ docker build -t fcoronel/photosdownloader .
+$ docker run -v /tmp/:/tmp/ fcoronel/photosdownloader
+```
