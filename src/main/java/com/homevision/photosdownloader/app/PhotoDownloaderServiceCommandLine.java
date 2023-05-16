@@ -39,6 +39,9 @@ public class PhotoDownloaderServiceCommandLine implements CommandLineRunner {
     @Value("${app.defaultTargetPath}")
     private String defaultTargetPath;
 
+    @Value("${app.name}")
+    private String appName;
+
     public PhotoDownloaderServiceCommandLine(PhotoDownloaderService service) {
         this.service = service;
     }
@@ -50,7 +53,8 @@ public class PhotoDownloaderServiceCommandLine implements CommandLineRunner {
         var cmd = parser.parse(options, args);
         if (cmd.hasOption(OPTION_HELP)) {
             HelpFormatter formatter = new HelpFormatter();
-            formatter.printHelp(args[0], options);
+            formatter.setWidth(125);
+            formatter.printHelp(appName, options, true);
         } else {
             var targetPath = cmd.getOptionValue(OPTION_DIR, defaultTargetPath);
             File targetDir = new File(targetPath);
@@ -70,7 +74,7 @@ public class PhotoDownloaderServiceCommandLine implements CommandLineRunner {
     }
 
     private Integer optionValueInteger(CommandLine cmd, String opt, Integer defaultValue) {
-        String value = cmd.getOptionValue(OPTION_PAGE_SIZE);
+        String value = cmd.getOptionValue(opt);
         if (value == null) {
             return defaultValue;
         }

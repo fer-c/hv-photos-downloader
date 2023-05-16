@@ -18,5 +18,10 @@
     "name": "app.defaultTargetPath",
     "type": "java.lang.String",
     "description": "Default destination for the download files"
+  },
+  {
+    "name": "app.name",
+    "type": "java.lang.String",
+    "description": "Application Name"
   }
 ]}

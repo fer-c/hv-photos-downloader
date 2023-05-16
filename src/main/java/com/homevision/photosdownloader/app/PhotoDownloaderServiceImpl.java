@@ -48,7 +48,9 @@ public class PhotoDownloaderServiceImpl implements PhotoDownloaderService {
     protected void downloadPhoto(final House house, final File targetDir) {
         String ext = extractFileExtension(house.getPhotoURL());
         String normalizedAddress = normalizeAddress(house.getAddress());
-        String dest = "%s-%s.%s".formatted(house.getId(), normalizedAddress, ext);
+        String destPath = "%s-%s.%s".formatted(house.getId(), normalizedAddress, ext);
+        File destFile = new File(targetDir, destPath);
+        String dest = destFile.getPath();
         URL url;
         try {
             url = new URL(house.getPhotoURL());
@@ -58,14 +60,14 @@ public class PhotoDownloaderServiceImpl implements PhotoDownloaderService {
             return;
         }
         try(InputStream inputStream = url.openStream()) {
-            FileOutputStream fileOS = new FileOutputStream(new File(targetDir, dest));
+            FileOutputStream fileOS = new FileOutputStream(destFile);
             IOUtils.copy(inputStream, fileOS);            
         } catch (Exception e) {
             log.error("Failed to downloaded {} to ", house.getPhotoURL(), dest, e);
             System.err.println("Failed to download " + house.getPhotoURL());
             return;
         }
-        System.out.println("Download " + house.getPhotoURL() + " to " + dest);
+        System.out.println("Downloaded " + house.getPhotoURL() + " to " + dest);
     }
 
     private String normalizeAddress(final String address) {
